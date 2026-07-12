@@ -1,0 +1,1 @@
+Directory for second-stage bootloader and appliation linker scripts
