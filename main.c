@@ -16,8 +16,7 @@ int main() {
         // perform an xor on the state of GPIO25
         SIO->GPIO_OUT_XOR = (1u << LED_PIN);
 
-        // standard clock speed of RP2350 is 150 MHz, with 4 cycles per loop, should be around 270 ms with 10000000 loops
-        // but it looks like around 1 per second on the board so im not sure 
+	// implement short delay. I'm not sure how long this delay is, but it looks around 100 ms from testing
         for (int i = 0; i < 10000000; i++) {
             __NOP();
         }
