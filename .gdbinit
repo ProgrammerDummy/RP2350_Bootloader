@@ -12,6 +12,8 @@ set $pc = 0x20000000
 b main
 c
 
+tui enable
+
 
 # some useful diagnostic commands
 # print/x $sp

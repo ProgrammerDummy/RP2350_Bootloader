@@ -3,3 +3,7 @@ A two-stage bootloader for the RP2350.
 
 feature/blinky branch
 
+Instructions to run code:
+make
+gdb
+
