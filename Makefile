@@ -1,6 +1,15 @@
-CFLAGS += -c -mcpu=cortex-m33
+CC = arm-none-eabi-gcc
 
-all:
-	arm-none-eabi-gcc $(CFLAGS) main.c -o main.o
+CFLAGS += -mcpu=cortex-m33 -mthumb -g -O0
+
+LFLAGS = -T ld/ram-exec.ld -nostartfiles
+
+TARGET = main.elf
+OBJECTS = main.o
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 
 
