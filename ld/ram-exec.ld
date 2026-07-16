@@ -5,6 +5,8 @@
  * This requires GDB to jump to the addres of the start symbol
  */
 
+ENTRY(main)
+
 MEMORY {
 	/* 
 	 * RP2350 address map (page 30 rp2350 datasheet
@@ -27,4 +29,7 @@ SECTIONS {
 		*(.bss*)
 		*(COMMON)
 	} > SRAM
-}	
+}
+
+/* In ARM architecture usually the stack grows downward from the highest memaddr of SRAM */
+__stack_top = ORIGIN(SRAM) + LENGTH(SRAM);

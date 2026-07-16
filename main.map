@@ -1,0 +1,78 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00082000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.o
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/15.2.0/thumb/v8-m.main/nofp/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/15.2.0/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a
+LOAD /usr/lib/gcc/arm-none-eabi/15.2.0/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libc.a
+END GROUP
+
+.text           0x20000000        0xc
+ *(.text*)
+ .text          0x20000000        0x6 main.o
+                0x20000000                main
+ *(.rodata*)
+ *fill*         0x20000006        0x2 
+ .rodata        0x20000008        0x4 main.o
+                0x20000008                LED_PIN
+
+.glue_7         0x2000000c        0x0
+ .glue_7        0x2000000c        0x0 linker stubs
+
+.glue_7t        0x2000000c        0x0
+ .glue_7t       0x2000000c        0x0 linker stubs
+
+.vfp11_veneer   0x2000000c        0x0
+ .vfp11_veneer  0x2000000c        0x0 linker stubs
+
+.v4_bx          0x2000000c        0x0
+ .v4_bx         0x2000000c        0x0 linker stubs
+
+.data           0x2000000c        0x0
+ *(.data*)
+ .data          0x2000000c        0x0 main.o
+
+.bss            0x2000000c        0x0
+ *(.bss*)
+ .bss           0x2000000c        0x0 main.o
+ *(COMMON)
+                0x20082000                        __stack_top = (ORIGIN (SRAM) + LENGTH (SRAM))
+OUTPUT(main.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000       0x60
+ .debug_info    0x00000000       0x60 main.o
+
+.debug_abbrev   0x00000000       0x5a
+ .debug_abbrev  0x00000000       0x5a main.o
+
+.debug_aranges  0x00000000       0x20
+ .debug_aranges
+                0x00000000       0x20 main.o
+
+.debug_line     0x00000000       0x39
+ .debug_line    0x00000000       0x39 main.o
+
+.debug_str      0x00000000       0xa3
+ .debug_str     0x00000000       0xa3 main.o
+
+.comment        0x00000000       0x23
+ .comment       0x00000000       0x23 main.o
+                                 0x24 (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x34
+ .ARM.attributes
+                0x00000000       0x34 main.o
+
+.debug_frame    0x00000000       0x28
+ .debug_frame   0x00000000       0x28 main.o
