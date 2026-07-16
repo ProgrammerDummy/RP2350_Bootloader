@@ -11,6 +11,8 @@ all: $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 
+main.o: main.c rp2350_regs.h
+
 clean:
 	rm -f $(OBJECTS) $(TARGET) main.map
 

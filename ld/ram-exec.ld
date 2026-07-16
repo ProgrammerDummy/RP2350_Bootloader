@@ -1,8 +1,8 @@
 /*
  * ram-exec.ld
  *
- * Minimal linker script to use gdb to load and execute code entirely in ram (no flash).
- * This requires GDB to jump to the addres of the start symbol
+ * Minimal linker script to load and exec code directly in RAM.
+ * It's expected to run GDB and set $sp=&__stack_top and $sp=0x20000000
  */
 
 ENTRY(main)
